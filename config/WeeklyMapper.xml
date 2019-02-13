@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weekly.mapper.WeeklyMapper">
+	
+	<!-- 创建新周报 -->
+	<insert id="insertWeekly" parameterType="com.weekly.bean.Weekly">
+		insert into weekly values(#{weeklyId},#{weeklyName},#{workContent},#{solveProblems},#{summingUpExperience},#{remainingProblems},#{nextWeekPlan},#{userId})
+	</insert>
+	
+	<!-- 选择所有周报 -->
+	<select id="getAllWeeklyByUserId" resultType="com.weekly.bean.Weekly">
+ 		select weekly_id as weeklyId, weekly_name as weeklyName, work_content as workContent, solve_problems as solveProblems, summing_up_experience summingUpExperience, remaining_problems as remainingProblems, next_week_plan as nextWeekPlan, user_id as userId from weekly where user_id = #{userId}
+ 	</select>
+ 	
+ 	<!-- 删除一个周报 -->
+ 	<delete id="deleteWeeklyById" parameterType="string">
+ 		delete from weekly where weekly_id = #{weeklyId}
+ 	</delete>
+ 	
+ 	<!-- 根据ID选择一个周报 -->
+	<select id="getAllWeeklyByWeeklyId" resultType="com.weekly.bean.Weekly">
+ 		select weekly_id as weeklyId, weekly_name as weeklyName, work_content as workContent, solve_problems as solveProblems, summing_up_experience summingUpExperience, remaining_problems as remainingProblems, next_week_plan as nextWeekPlan, user_id as userId from weekly where weekly_id = #{WeeklyId}
+ 	</select>
+ 	
+</mapper>

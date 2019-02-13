@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weekly.mapper.UserMapper">
+
+	<!-- 通过用户名获取用户 -->
+	<select id="getUserbyName" resultType="com.weekly.bean.User" parameterType="string">
+		select user_id as userId, user_name as userName, password from users where user_name = #{userName}
+	</select>
+	
+	<!-- 创建新用户 -->
+	<insert id="insertUser" parameterType="com.weekly.bean.User">
+		insert into users values(#{userId},#{userName},#{password}) 
+	</insert>
+	
+	<select id="selectUser" resultType="com.weekly.bean.User" parameterType="com.weekly.bean.User">
+		select user_id as userId, user_name as userName, password from users where user_id = #{userId}
+	</select>
+	<insert id="addUser" parameterType="com.weekly.bean.User">
+		insert into users values(#{userId},#{userName},#{password}) 
+	</insert>
+	<delete id="deleteUser" parameterType="string">
+		delete from users where user_id = #{userId}
+	</delete>
+	<update id="updateUser" parameterType="com.weekly.bean.User">
+		update users set user_name=#{userName},password=#{password} where user_id=#{userId}
+ 	</update>
+ 	<select id="queryAll" resultType="com.weekly.bean.User">
+ 		select user_id as userId,user_name as userName, password from users
+ 	</select>
+</mapper>
