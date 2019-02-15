@@ -14,6 +14,11 @@
 		insert into users values(#{userId},#{userName},#{password}) 
 	</insert>
 	
+	<!-- 更新用户名 -->
+	<update id="updateUserName">
+		update users set user_name=#{userName} where user_id=#{userId}
+	</update>
+	
 	<select id="selectUser" resultType="com.weekly.bean.User" parameterType="com.weekly.bean.User">
 		select user_id as userId, user_name as userName, password from users where user_id = #{userId}
 	</select>

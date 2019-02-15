@@ -1,6 +1,7 @@
 package com.weekly.service;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -67,6 +68,24 @@ public class UserService {
 		try {
 			SqlSession session = SessionUtil.getSession();
 			int affect = session.insert("com.weekly.mapper.UserMapper.insertUser", user);
+			session.commit();
+			session.close();
+			return affect == 0 ? false : true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
+	}
+	
+	/**
+	 * 更新用户名
+	 * @param user
+	 * @return
+	 */
+	public Boolean updateUserName(Map<String, String> map) {
+		try {
+			SqlSession session = SessionUtil.getSession();
+			int affect = session.update("com.weekly.mapper.UserMapper.updateUserName", map);
 			session.commit();
 			session.close();
 			return affect == 0 ? false : true;

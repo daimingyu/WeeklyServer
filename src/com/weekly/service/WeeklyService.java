@@ -76,4 +76,21 @@ public class WeeklyService {
 			return null;
 		}
 	}
+	/**
+	 * 更新一个weekly
+	 * @param weekly
+	 * @return
+	 */
+	public Boolean updateOneWeekly(Weekly weekly) {
+		try {
+			SqlSession session = SessionUtil.getSession();
+			int affect = session.update("com.weekly.mapper.WeeklyMapper.updateOneWeekly", weekly);
+			session.commit();
+			session.close();
+			return affect == 0 ? false : true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
+	}
 }

@@ -21,7 +21,12 @@
  	
  	<!-- 根据ID选择一个周报 -->
 	<select id="getAllWeeklyByWeeklyId" resultType="com.weekly.bean.Weekly">
- 		select weekly_id as weeklyId, weekly_name as weeklyName, work_content as workContent, solve_problems as solveProblems, summing_up_experience summingUpExperience, remaining_problems as remainingProblems, next_week_plan as nextWeekPlan, user_id as userId from weekly where weekly_id = #{WeeklyId}
+ 		select weekly_id as weeklyId, weekly_name as weeklyName, work_content as workContent, solve_problems as solveProblems, summing_up_experience summingUpExperience, remaining_problems as remainingProblems, next_week_plan as nextWeekPlan, user_id as userId from weekly where weekly_id = #{weeklyId}
  	</select>
+ 	
+ 	<!-- 更新一个周报 -->
+	<update id="updateOneWeekly" parameterType="com.weekly.bean.Weekly">
+ 		update weekly set weekly_name=#{weeklyName}, work_content=#{workContent}, solve_problems=#{solveProblems}, summing_up_experience=#{summingUpExperience}, remaining_problems=#{remainingProblems}, next_week_plan=#{nextWeekPlan} where weekly_id = #{weeklyId}
+ 	</update>
  	
 </mapper>
