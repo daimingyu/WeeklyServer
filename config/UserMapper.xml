@@ -19,19 +19,9 @@
 		update users set user_name=#{userName} where user_id=#{userId}
 	</update>
 	
-	<select id="selectUser" resultType="com.weekly.bean.User" parameterType="com.weekly.bean.User">
-		select user_id as userId, user_name as userName, password from users where user_id = #{userId}
-	</select>
-	<insert id="addUser" parameterType="com.weekly.bean.User">
-		insert into users values(#{userId},#{userName},#{password}) 
-	</insert>
-	<delete id="deleteUser" parameterType="string">
-		delete from users where user_id = #{userId}
-	</delete>
-	<update id="updateUser" parameterType="com.weekly.bean.User">
-		update users set user_name=#{userName},password=#{password} where user_id=#{userId}
- 	</update>
- 	<select id="queryAll" resultType="com.weekly.bean.User">
- 		select user_id as userId,user_name as userName, password from users
- 	</select>
+	<!-- 更新密码 -->
+	<update id="updateUserPass">
+		update users set password=#{password} where user_id=#{userId}
+	</update>
+	
 </mapper>

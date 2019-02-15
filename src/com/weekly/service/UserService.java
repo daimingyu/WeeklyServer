@@ -94,4 +94,21 @@ public class UserService {
 			return false;
 		}
 	}
+	/**
+	 * 更新用户密码
+	 * @param map
+	 * @return
+	 */
+	public Boolean updateUserPass(Map<String, String> map) {
+		try {
+			SqlSession session = SessionUtil.getSession();
+			int affect = session.update("com.weekly.mapper.UserMapper.updateUserPass", map);
+			session.commit();
+			session.close();
+			return affect == 0 ? false : true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			return false;
+		}
+	}
 }
