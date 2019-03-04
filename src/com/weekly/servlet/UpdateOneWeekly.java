@@ -40,6 +40,9 @@ public class UpdateOneWeekly extends HttpServlet {
 		// TODO Auto-generated method stub
 		//设置返回值类型为json
 		response.setContentType("application/json;charset=utf-8");
+	    //允许客户端访问解决跨域问题
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST");
 		
 		//获取传过来的参数
 		String weeklyName = URLDecoder.decode(request.getParameter("weeklyName"), "UTF-8");
@@ -50,7 +53,6 @@ public class UpdateOneWeekly extends HttpServlet {
 		String nextWeekPlan = URLDecoder.decode(request.getParameter("nextWeekPlan"), "UTF-8");
 		String userId = request.getParameter("userId");
 		String weeklyId = request.getParameter("weeklyId");
-		String callback = request.getParameter("callback");
 		
 		//调用Service服务,检查用户密码是否合法
 		WeeklyService ws = new WeeklyService();
@@ -67,7 +69,7 @@ public class UpdateOneWeekly extends HttpServlet {
 		JSONObject responseText = JSONObject.fromObject(json);
 				
 		//返回给客户端
-		response.getWriter().print(callback + "(" + responseText + ")");
+		response.getWriter().print( responseText );
 	}
 
 	/**
